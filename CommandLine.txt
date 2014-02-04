@@ -1,0 +1,24 @@
+javac MailboxFactoryServer.java
+java -Djava.rmi.server.codebase=file://$pwd/ MailboxFactoryServer
+rmic -keep Mailbox MailboxFactory
+rmiregistry
+
+javac MailboxClient.java
+java MailboxClient c djothi@localhost 
+java MailboxClient v djothi@localhost 
+java MailboxClient s djothi@localhost dji@localhost "hello"
+java MailboxClient s djothi@localhost "dji@localhost;toto@localhost" "hello people"
+java MailboxClient d djothi@localhost s3
+java MailboxClient e djothi@localhost
+
+java MailboxClient c dji@localhost 
+java MailboxClient v dji@localhost 
+java MailboxClient s dji@localhost djothi@localhost "hello you too"
+java MailboxClient d dji@localhost i0
+java MailboxClient e djothi@localhost
+
+java MailboxClient c toto@localhost
+java MailboxClient v toto@localhost 
+java MailboxClient s toto@localhost djothi@localhost "hello you too"
+java MailboxClient t toto@localhost dji@localhost
+java MailboxClient e djothi@localhost
