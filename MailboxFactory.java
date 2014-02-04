@@ -31,7 +31,7 @@ public class MailboxFactory extends UnicastRemoteObject implements MailboxFactor
 		try {
 			Mailbox m = new Mailbox(name);
 			Naming.rebind(name, m);
-			System.out.println("Creation de la MailBox : " + name);
+			System.out.println("Creating MailBox : " + name);
 			//It saves the mailbox object
 			mailboxesstore.put(name, m);
 			return true;
@@ -46,7 +46,7 @@ public class MailboxFactory extends UnicastRemoteObject implements MailboxFactor
 		try {
 			//It remove the object from naming
 			Naming.unbind(name);
-			System.out.println("Suppression de la MailBox : " + name);
+			System.out.println("Deleting de la MailBox : " + name);
 			//It removes the object from the available mailboxes
 			mailboxesstore.remove(name);
 			//It deletes the mailbox backup from the disk
@@ -68,7 +68,7 @@ public class MailboxFactory extends UnicastRemoteObject implements MailboxFactor
 		
 		//For each Mailbox it have been created
 		for(Entry<String, Mailbox> entry : mailboxesstore.entrySet()) {
-			System.out.println("Sauvegarde de la Mailbox : " + (String) entry.getKey());
+			System.out.println("Save Mailbox : " + (String) entry.getKey());
 			try {
 				//It opens a file to write
 				//Here,we assume that the folder to save is stored and extension of the file is .smbox
@@ -77,7 +77,7 @@ public class MailboxFactory extends UnicastRemoteObject implements MailboxFactor
 				oos.writeObject((Mailbox) entry.getValue());
 				oos.flush();//Erase the cache
 				oos.close();
-				System.out.println("Sauvegarde réussie");
+				System.out.println("Successfully saved");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -104,7 +104,7 @@ public class MailboxFactory extends UnicastRemoteObject implements MailboxFactor
 				//It update the naming and the mailboxesstore
 				Naming.rebind(m.getName(), m);
 				mailboxesstore.put(m.getName(), m);
-				System.out.println("Restauration de la Mailbox : "+m.getName());
+				System.out.println("Recovering Mailbox : "+m.getName());
 			}
 		} catch (java.io.IOException e) {
 			e.printStackTrace();
