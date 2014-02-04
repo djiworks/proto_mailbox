@@ -54,14 +54,14 @@ public class MailboxClient {
 					if(argv.length < 4)
 						usage();
 					
-					/**********Ajout du code ***************/
-					//On rŽcupŽre l'ID de l'expŽditeur
+
+					//Get sender ID 
 					String expid = argv[1].substring(0, argv[1].indexOf("@"));
 					
-					//Le server de l'expŽditeur
+					//Get server name
 					String expserver = argv[1].substring(argv[1].indexOf("@") + 1);
 					
-					//On envoie la requte ˆ la mailbox de l'expŽditeur
+					//Send a request to the sender server
 					MailboxInterface expMailbox = (MailboxInterface) Naming.lookup("rmi://" + expserver + "/" + expid);
 					System.out.println(expMailbox.deliver(argv[1], argv[2], argv[3]));
 					
@@ -111,7 +111,7 @@ public class MailboxClient {
 			}
 			
 		} catch (Exception e) {
-			System.out.println ("Erreur client : " + e) ;
+			System.out.println ("Error client : " + e) ;
 		}
 	}
 }
