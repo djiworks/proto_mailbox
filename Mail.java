@@ -2,7 +2,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 /* Class Mail
- * Encapsulation des informations liées à un mail
  * @author Djothi
  *
  */
