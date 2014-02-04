@@ -4,26 +4,26 @@ import java.security.Permission;
 
 public class MailboxFactoryServer {
 	public static void main (String [ ] argv) {
-		/* lancer SecurityManager */
+		/* Run SecurityManager */
 		System.setSecurityManager(new RMISecurityManager() {
 			public void checkPermission(Permission perm) {}
 		});
 		
 		try {
 			Naming.rebind("Factory", new MailboxFactory()) ;
-			System.out.println ("Serveur pret.") ;
+			System.out.println ("Server ready.") ;
 		} catch (Exception e) { 
-			System.out.println("Erreur serveur : " + e) ;
+			System.out.println("Error : " + e) ;
 		}
 		
 		//Used for catch the ctrl-c
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 		    public void run() { 
-		    	System.out.println("\nFermeture du serveur en cours...\n");
-		    	System.out.println("Préparation de la sauvegarde en cours...\n");
-				System.out.println("Début de la sauvegarde des donnée\n");
+		    	System.out.println("\nClosing server...\n");
+		    	System.out.println("Saving mailboxes..\n");
+				System.out.println("Starting saving mailbox data\n");
 				MailboxFactory.save();
-		    	System.out.println("Fin de la sauvegarde des données\n");
+		    	System.out.println("Mailbox data saved\n");
 		    }
 		 });
 	}
