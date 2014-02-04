@@ -1,4 +1,4 @@
-proto_mailbox
+MailBox Emulation
 =============
 
 Java Mailbox Emulation.
