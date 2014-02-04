@@ -5,7 +5,7 @@ Java Mailbox Emulation.
 
 #Main goals and Topic
 
-Main goal:
+Main goals:
 * Learn to use RMI
 * Learn distributed environment
 
